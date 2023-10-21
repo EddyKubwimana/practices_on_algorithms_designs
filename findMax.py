@@ -11,7 +11,7 @@ def divide(array):
     - To find the left sublist = inputlist[0]
     - To find the right sublist  = inputlist[1]
     '''
-    mid = (len(array)//2)+1
+    mid = len(array)//2
 
     return [array[0:mid],array[mid:]]
 
@@ -48,6 +48,34 @@ def computeRateChange(prices):
 
     return change
 
+
+def findMaximun(array,low,high):
+
+    if high ==low:
+        return(low, high, array)
+    
+    else:
+
+        mid = (low+high)//2
+
+        left_low, left_high, left_summ = findMaximun(array,low, mid+1)
+
+        right_low, right_high, right_summ = findMaximun(array, mid+1, high)
+
+        cross_low, cross_high, cross_summ = findMaximun(array, (mid-low)+1, high-mid)
+        
+        if left_summ>= right_high and left_summ>= cross_summ:
+            return   (left_low, left_high, left_summ)
+        
+        elif right_summ>= left_summ and right_high >=cross_summ:
+            return  (right_low, right_high, right_summ)
+        else:
+            return (cross_low, cross_high, cross_summ)
+
+
+
+
+
         
 
 
@@ -68,8 +96,13 @@ days = {
     9:13
 }
 
+a = (1,9)
+b=(10,1)
+
+print(a>b)
+
 
 print(computeRateChange(days))
-print(divide(computeRateChange(days))[1])
+print(divide(computeRateChange(days)))
 
 
