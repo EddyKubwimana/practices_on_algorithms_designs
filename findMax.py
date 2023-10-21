@@ -39,7 +39,16 @@ def computeRateChange(prices):
 
             rates.append(prices[i])
 
-    return prices
+    change = []
+
+    for i in range(1,len(rates)):
+
+        change.append(rates[i-1]-rates[i])
+
+
+    return change
+
+        
 
 
 
@@ -61,4 +70,6 @@ days = {
 
 
 print(computeRateChange(days))
+print(divide(computeRateChange(days))[1])
+
 
