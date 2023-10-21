@@ -80,16 +80,6 @@ def maxCross(array, low, mid, high):
             max_right = v
     return(max_left, max_right, left_sum+right_sum)
 
-        
-
-
-        
-         
-
-
-
-
-
 
 def findMaximun(array,low,high):
 
@@ -104,7 +94,7 @@ def findMaximun(array,low,high):
 
         right_low, right_high, right_summ = findMaximun(array, mid+1, high)
 
-        cross_low, cross_high, cross_summ = findMaximun(array,left_low, right_high),
+        cross_low, cross_high, cross_summ = maxCross(array,low, mid, high),
         
         if left_summ>= right_high and left_summ>= cross_summ:
             return   (left_low, left_high, left_summ)
@@ -113,6 +103,21 @@ def findMaximun(array,low,high):
             return  (right_low, right_high, right_summ)
         else:
             return (cross_low, cross_high, cross_summ)
+        
+
+
+
+def computeProfitable(dic):
+
+    array = computeRateChange(dic)
+    low = 0; 
+    high = len(array)-1
+
+    return findMaximun(array,low, high)
+
+
+
+
 
 
 
@@ -137,8 +142,6 @@ days = {
     8:5,
     9:13
 }
-
-print(computeRateChange(days))
-print(divide(computeRateChange(days)))
+print(computeProfitable(days))
 
 
