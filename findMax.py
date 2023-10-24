@@ -50,6 +50,7 @@ def computeRateChange(prices):
 
 
 def maxCross(array, low, mid, high):
+    left_array, right_array =[],[]
     left_sum = 0
     for i in array[0:mid]:
         left_sum+= i
@@ -63,10 +64,11 @@ def maxCross(array, low, mid, high):
         if summ1> left_sum:
             left_sum = summ1
             max_left = v
+            left_array= array[low:v]
 
 
     right_sum =0
-    for c in [array[mid:]]:
+    for c in array[mid:]:
         right_sum+=c
 
     summ2 =0
@@ -77,26 +79,27 @@ def maxCross(array, low, mid, high):
 
         if summ2>right_sum:
             right_sum = summ2
-            max_right = v
-    return(max_left, max_right, left_sum+right_sum)
+            max_right = t
+            right_array = array[mid:t+1]
+    return(max_left, max_right, left_array.extend(right_array))
 
 
 def findMaximun(array,low,high):
 
-    if high ==low:
+    if high==low:
         return(low, high, array)
     
     else:
 
         mid = (low+high)//2
 
-        left_low, left_high, left_summ = findMaximun(array,low, mid+1)
+        left_low, left_high, left_summ = findMaximun(array,low, mid)
 
         right_low, right_high, right_summ = findMaximun(array, mid+1, high)
 
-        cross_low, cross_high, cross_summ = maxCross(array,low, mid, high),
+        cross_low, cross_high, cross_summ =maxCross(array,low, mid, high)
         
-        if left_summ>= right_high and left_summ>= cross_summ:
+        if left_summ>= right_summ and left_summ>= cross_summ:
             return   (left_low, left_high, left_summ)
         
         elif right_summ>= left_summ and right_high >=cross_summ:
