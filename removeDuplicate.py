@@ -52,8 +52,18 @@ def recursivePower(number, power):
     elif power == 1:
         return number
     else:
-        power = power-1
-        return number*recursivePower(number,power)
+       
+            power = power-1
+            return number*recursivePower(number,power)
+    
+
+def sumLinear(lastNumber):
+    if lastNumber==0:
+        return lastNumber
+    else:
+        return lastNumber+sumLinear(lastNumber-1)
+    
+        
     
 
 
@@ -68,7 +78,8 @@ array = [1,1,1,1,22,10,6,9,0,10,6]
 print(removeDuplicate(array))
 print(rotate(array,5))
 
-print(recursivePower(7,2))
+print(recursivePower(7,10))
+print(sumLinear(5))
 
 
 
