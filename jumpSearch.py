@@ -1,5 +1,10 @@
 import math
 def jumpStart(array,target):
+    '''
+    - The jumpsart algorithms
+    - Time complexity O(n^(1/2))
+    
+    '''
 
 
     jump = int(math.sqrt(len(array)))
