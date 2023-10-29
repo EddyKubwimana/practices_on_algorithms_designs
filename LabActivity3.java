@@ -8,6 +8,8 @@
 
 // creation of  Task class
 
+import java.util.Scanner;
+
 class Task{
 
     // instance variables
@@ -69,6 +71,7 @@ class Stack{
 
     // instance variable
     Node tail;
+    int size;
 
     // constructor  for the stack object
 
@@ -76,6 +79,8 @@ class Stack{
         // push method for adding the task at the top of the stack
 
         Node node = new Node(task);
+
+        this.size++;
 
         if(this.tail == null){
 
@@ -106,9 +111,10 @@ class Stack{
         }
 
         else{
-
+      
             tail.prev.next = null;
             tail = tail.prev;
+            this.size--;
             return true;
 
 
@@ -129,6 +135,11 @@ class Stack{
 
          //to string method to print all task in the stack
 
+         if (this.tail == null){
+
+            System.out.println("The stack is empty, there is no high priority here");
+         }
+
          Node curr_node = this.tail;
          int counter = 0;
          while(curr_node!=null){
@@ -138,7 +149,6 @@ class Stack{
             curr_node = curr_node.prev;
 
          }
-
 
 
 
@@ -153,6 +163,7 @@ class Queue{
 
     Node head;
     Node tail;
+    int size;
 
 
     public void enqueue(Task task){
@@ -160,6 +171,7 @@ class Queue{
         // Adding to the queue the new normal tasks
 
         Node node = new Node(task);
+        this.size++;
 
         if(this.tail == null){
 
@@ -190,6 +202,7 @@ class Queue{
         else{
         
             this.head = this.head.next;
+            this.size--;
             return true;
 
         }
@@ -203,7 +216,15 @@ class Queue{
 
          //to string method to print all task in the queue
 
+         if(this.head == null){
+
+            System.out.println("There is no normal task here, the queue is empty");
+            
+         }
+
          Node curr_node = this.head;
+
+         
          int counter = 0;
          while(curr_node!=null){
 
@@ -216,10 +237,160 @@ class Queue{
 
 
 
+
+
     }
 
 
 
     
+
+}
+
+
+class Processor{
+    
+    Stack highpriority;
+    Queue normalPriority;
+
+    public void addTask(Task data){
+
+        // This method add a given task either to high priority or normal prority list
+
+        if (data.priority>5){
+
+
+            highpriority.push(data);
+            this.prioritize();
+
+        }
+
+        else{
+
+            normalPriority.enqueue(data);
+
+        }
+
+    }
+
+    public void createTask(){
+
+
+        System.out.println("Create the task you want to add to your processor");
+
+        Scanner input = new Scanner(System.in);
+
+        System.out.println("==============Enter the Id of the Task===================");
+        int id = input.nextInt();
+        System.out.println("=============Enter the description of the task===========");
+        String description = input.nextLine();
+        System.out.println("=============Enter the priority of the task===========");
+        int priority = input.nextInt();
+        input.close();
+        this.addTask( new Task(id, description, priority)); 
+
+    }
+
+
+    public void process(){
+        // this the method to process the task in the processor
+
+
+
+
+
+
+    }
+
+
+    public void options(){
+          
+
+        System.out.println("=============OPTIONS===============");
+        System.out.println("           1. ADD TASK             ");
+        System.out.println("           2. VIEW QUEUE           ");
+        System.out.println("           3. VIEW STACK            ");
+        System.out.println("           4. PROCESS A TASK        ");
+        System.out.println("           5. QUIT                 ");
+        System.out.println("=============Enter the option===============");
+        
+        Scanner options = new Scanner(System.in);
+
+        int choice = options.nextInt();
+
+        options.close();
+
+        if( choice == 1){
+
+            this.createTask();
+
+        }
+        else if (choice ==2){
+
+            this.normalPriority.displayQueue();
+
+        }
+
+        else if (choice ==3){
+            this.highpriority.displayStack();
+        
+
+        }
+
+        else if (choice ==4){
+
+        }
+
+
+
+
+
+
+    }
+
+   public void prioritize(){
+
+    // This method use bubble sort to prioritize high priority task during processing them
+
+    Node priority = this.highpriority.tail;
+
+    boolean handler = true;
+    while ( handler == true){
+
+        handler = false;
+
+        for( int i = 0; i<this.highpriority.size; i++){
+
+            if (priority.prev !=null & priority.prev.data.taskId>priority.data.taskId ){
+
+                Task holder = priority.data;
+                priority.data = priority.prev.data;
+                priority.prev.data = holder;
+                handler =true;
+                priority = priority.prev;
+
+
+
+            }
+
+        }
+
+
+
+
+
+
+
+    }
+
+
+
+
+   }
+
+
+
+
+
 
 }
