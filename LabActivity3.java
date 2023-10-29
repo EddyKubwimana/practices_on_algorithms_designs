@@ -6,8 +6,14 @@
 
 */
 
-// creation of  Task class
+
+import java.util.InputMismatchException;
 import java.util.Scanner;
+
+
+// =====================================================================================================================================
+                                                       //This is the task class
+// =====================================================================================================================================
 
 class Task {
 
@@ -44,6 +50,11 @@ class Task {
 
 // I will implement the class using linked list
 
+
+// =====================================================================================================================================
+                                                       //This is the node class
+// =====================================================================================================================================
+
 class Node {
 
     // instance variable for Node object
@@ -64,6 +75,12 @@ class Node {
     }
 
 }
+
+
+
+// =====================================================================================================================================
+                                                       //This is the Stack class
+// =====================================================================================================================================
 
 class Stack {
 
@@ -136,7 +153,7 @@ class Stack {
         int counter = 0;
         while (curr_node != null) {
 
-            System.out.println(" Recent Task " + counter + " : " + curr_node.data.toString());
+            System.out.println(" Recent Task " + counter+1 + " : " + curr_node.data.toString());
             counter++;
             curr_node = curr_node.prev;
 
@@ -146,6 +163,11 @@ class Stack {
 
 }
 
+
+
+// =====================================================================================================================================
+                                                       //This is the queue node
+// =====================================================================================================================================
 class Queue {
 
     Node head;
@@ -208,7 +230,7 @@ class Queue {
         int counter = 0;
         while (curr_node != null) {
 
-            System.out.println(" Recent Task " + counter + " : " + curr_node.data.toString());
+            System.out.println(" oldest Task " + counter+1 + " : " + curr_node.data.toString());
             counter++;
             curr_node = curr_node.next;
 
@@ -217,6 +239,12 @@ class Queue {
     }
 
 }
+
+
+
+// =====================================================================================================================================
+                                //This is the processor for handling the processing of task
+// =====================================================================================================================================
 
 class Processor {
 
@@ -309,99 +337,127 @@ public void options() {
     boolean repeat = true;
 
 
-Scanner keyboard = new Scanner(System.in);
+    Scanner keyboard = new Scanner(System.in);
+
+
 
    
 
     do {
+
+
+         try{
+
     
-        System.out.println("=============OPTIONS===============");
-        System.out.println("1. ADD TASK");
-        System.out.println("2. VIEW QUEUE");
-        System.out.println("3. VIEW STACK");
-        System.out.println("4. PROCESS A TASK");
-        System.out.println("5. VIEW ADDED TO PROCESSED");
-        System.out.println("6. QUIT");
-        System.out.println("=============Enter the option===============");
+    
+                System.out.println("=============OPTIONS===============");
+                System.out.println("1. ADD TASK");
+                System.out.println("2. VIEW QUEUE");
+                System.out.println("3. VIEW STACK");
+                System.out.println("4. PROCESS A TASK");
+                System.out.println("5. VIEW ADDED TO PROCESSED");
+                System.out.println("6. QUIT");
+                System.out.println("=============Enter the option===============");
+
+               
+                if (keyboard.hasNextInt()) {
+
+                    
+                  
+
+                    
+                    int choice = keyboard.nextInt();
+
+                    if (choice == 1) {
 
 
-        if (keyboard.hasNextInt()) {
-            int choice = keyboard.nextInt();
+                        System.out.println("Create the task you want to add to your processor");
+                        System.out.println("==============Enter the Id of the Task===================");
+                        int id = keyboard.nextInt();
+                        keyboard.nextLine(); 
+                        System.out.println("=============Enter the description of the task===========");
+                        String description = keyboard.nextLine();
+                        System.out.println("=============Enter the priority of the task===========");
+                        int priority = keyboard.nextInt();
+                        keyboard.nextLine();
+                        Task created = new Task(id, description, priority);
+                        this.addTask(created);
 
-            if (choice == 1) {
+                    
+                    } else if (choice == 2) {
+                        if (this.normalPriority != null) {
+                            this.normalPriority.displayQueue();
+                        } else {
+                            System.out.println("The queue is empty; there is no normal priority here");
+                        }
+                    } else if (choice == 3) {
+                        if (this.highpriority != null) {
+                            this.highpriority.displayStack();
+                        } else {
+                            System.out.println("The queue is empty; there is no normal priority here");
+                        }
+                    } else if (choice == 4) {
+
+                        Task beingProccessed = this.process();
+
+                        if (beingProccessed!= null){
+
+                            System.out.println("======OPTIONS===========");
+                            System.out.println("Do you want to add : " + beingProccessed + "  " + " in processed bin");
+                            System.out.println("=======1. Yes ==========");
+                            System.out.println("=======2. No ==========");
+                            System.out.println("====Enter your choice :=====");
+                            
+                            int newchoice = keyboard.nextInt();
+                            keyboard.nextLine();
+
+                            if (newchoice == 1  ) {
+
+                                beingProccessed.status = Task.Status.completed;
+
+                                this.processed.enqueue(beingProccessed);
+
+                            } else {
+
+                                System.out.println("Thanks, the task will not added tho the processed bin");
+                            }
 
 
-                System.out.println("Create the task you want to add to your processor");
-                System.out.println("==============Enter the Id of the Task===================");
-                int id = keyboard.nextInt();
-                keyboard.nextLine(); 
-                System.out.println("=============Enter the description of the task===========");
-                String description = keyboard.nextLine();
-                System.out.println("=============Enter the priority of the task===========");
-                int priority = keyboard.nextInt();
-                keyboard.nextLine();
-                Task created = new Task(id, description, priority);
-                this.addTask(created);
 
-            
-            } else if (choice == 2) {
-                if (this.normalPriority != null) {
-                    this.normalPriority.displayQueue();
-                } else {
-                    System.out.println("The queue is empty; there is no normal priority here");
-                }
-            } else if (choice == 3) {
-                if (this.highpriority != null) {
-                    this.highpriority.displayStack();
-                } else {
-                    System.out.println("The queue is empty; there is no normal priority here");
-                }
-            } else if (choice == 4) {
 
-                Task beingProccessed = this.process();
+                        }else{
 
-                System.out.println("======OPTIONS===========");
-                System.out.println("Do you want to add : " + beingProccessed + "  " + " in processed bin");
-                System.out.println("=======1. Yes ==========");
-                System.out.println("=======2. No ==========");
-                System.out.println("====Enter your choice :=====");
-                 
-                 int newchoice = keyboard.nextInt();
-                 keyboard.nextLine();
+                            System.out.println("There is nothing to process");
 
-                if (newchoice == 1) {
-
-                     beingProccessed.status = Task.Status.completed;
-
-                    this.processed.enqueue(beingProccessed);
-
-                } else {
-
-                      System.out.println("Thanks, the task will not added tho the processed bin");
-                }
+                        }
+                        
+                    } else if (choice == 5) {
+                        this.processed.displayQueue();
+                    } else if (choice == 6) {
+                        repeat = false;
+                    } else {
+                        System.out.println("The option is not recognized, try again.");
+                    }
 
                 
-            } else if (choice == 5) {
-                this.processed.displayQueue();
-            } else if (choice == 6) {
-                repeat = false;
-            } else {
-                System.out.println("The option is not recognized, try again.");
+               
+                    
+                } else {
+                    System.out.println("Invalid input. Please enter a valid option");
+                    keyboard.nextLine();
+                }
+            
             }
-        } else {
-            System.out.println("Invalid input. Please enter a valid option");
+
+              catch (InputMismatchException e) {
+                    System.out.println("====Invalid input. Please enter a valid information. Try again ====");
+                    // Consume the invalid input
+                    keyboard.nextLine();
         }
+            
+        } while (repeat);
 
-         
-    } while (repeat);
-
-    keyboard.close();
-
-}
-
-
-    
-
+    keyboard.close();}
 
 
     public void prioritize() {
@@ -442,6 +498,11 @@ Scanner keyboard = new Scanner(System.in);
 
 }
 
+
+
+// =====================================================================================================================================
+                                                       //This is the main class
+// =====================================================================================================================================
 
 public class LabActivity3{
     
