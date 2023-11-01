@@ -91,5 +91,49 @@ class province:
         return self.connected
 
 
+
+
+
+class country:
+
+    def __init__(self, name, superficie):
+        self.name = name
+        self.superficie = superficie
+        self.province = []
+
+
+    
+    def __str__(self):
+
+        return f"{self.name}"
+    
+
+    def addProvince(self, province):
+
+        if not province in self.province:
+            self.province.append(province)
+
+
+
+
+
+# ===================testing =====================#
+
+c1 = commune("Shombo","Shombo",12000)
+c2 =commune("Buhiga","Buhiga",15000)
+c3 =commune("Bugenyuzi","bugenyuzi",11000)
+c4 = commune("Gihogazi", "Gihogazi", 80000)
+
+c2.addConnectedCommunes(c1)
+c2.addConnectedCommunes(c3)
+print(c2.getBorderingCommunes()[1])
+
+
+
+
+
+
+
+
         
         
