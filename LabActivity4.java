@@ -88,8 +88,6 @@ class Stack {
     Node tail;
     int size;
 
-    // constructor for the stack object
-
     public void push(Task task) {
         // push method for adding the task at the top of the stack
 
@@ -199,6 +197,10 @@ class Queue {
     }
 
     public boolean dequeue() {
+        
+        // The method remove the oldest element in the queue
+        // return true if it is remove
+        // return false otherwise
 
         if (this.head == null) {
             return false;
@@ -271,15 +273,9 @@ class Processor {
 
     }
 
-    public void createTask() {
-
-        
-        return;
-        
-
-    }
 
     public Task process() {
+
         // this the method to process the task in the processor
 
         if (this.highpriority.tail != null) {
@@ -334,6 +330,12 @@ class Processor {
 
 
 public void options() {
+
+    // This is essential for the working of the whole program
+    // managed all options of the programs and interact with the different object to perform different tasks.
+
+
+
     boolean repeat = true;
 
 
@@ -462,8 +464,7 @@ public void options() {
 
     public void prioritize() {
 
-        // This method use bubble sort to prioritize high priority task during
-        // processing them
+        // This method use bubble sort to prioritize high priority task during processing
 
         Node priority = this.highpriority.tail;
 
@@ -504,14 +505,16 @@ public void options() {
                                                        //This is the main class
 // =====================================================================================================================================
 
-public class LabActivity3{
+public class LabActivity4{
     
 
     public static void main(String[]arr){
 
-
+        // instatiantion of the processor object
         Processor processor1 = new Processor();
-
+        
+        // calling the options method on the processor instance
+        
         processor1.options();
 
 
