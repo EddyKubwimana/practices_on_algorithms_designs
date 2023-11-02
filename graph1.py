@@ -126,7 +126,7 @@ c4 = commune("Gihogazi", "Gihogazi", 80000)
 
 c2.addConnectedCommunes(c1)
 c2.addConnectedCommunes(c3)
-print(c2.getBorderingCommunes()[1])
+
 
 
 
