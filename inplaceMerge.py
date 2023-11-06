@@ -1,38 +1,31 @@
 
-def merge(array,low,high):
+def divide(array,low, high):
+     
+     '''
+     - divide using using index
+     '''
+     
+     mid = (low+high)//2
+     return low, mid, high
 
 
-    lower = low
-    mid = (low+high)//2
-    middle = mid
-    upper = high
+def merge(array, left, right):
+     pass
+     
 
-    while lower<=mid and middle<high:
-
-        if array[lower]>array[middle]:
-            array[lower], array[middle] = array[middle+1], array[lower]
-            lower+=1
-
-        else:
-            middle+=1
-
-
-    return array
+     
 
 
 
 
+array = [1,2,3,4,6,7,9]
 
-        
+print(divide(array,0,7))
 
 
 
-# =========testing==========#
-
-array = [1,20,1,11,7,6,11]
-
-print(array, merge(array,0,len(array)))
-
+ 
+      
 
 
         
