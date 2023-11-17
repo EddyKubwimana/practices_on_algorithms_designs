@@ -3,17 +3,36 @@ def divide(array,low, high):
      
      '''
      - divide using using index
+
      '''
      
      mid = (low+high)//2
      return low, mid, high
 
 
-def merge(array, left, right):
-     pass
+def merge(array, low, mid, high):
+     
+     lower= low
+     midder = mid
+     upper = high
+
+     while lower<mid and midder <high:
+          
+          if array[lower]>array[midder]:
+               
+               
+               
+          
+     
+    
+     
+     
+
+    
      
 
      
+
 
 
 
