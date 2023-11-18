@@ -176,6 +176,41 @@ public class Tree{
      
 }
 
+// find the predecessor of an element 
+// return sub tree of that predeccessor
+
+public Sub findPredecessor(int value){
+
+    Sub curr = this.rootvalue(value);
+
+
+    if(curr.right!=null){
+
+    
+
+            curr = curr.right;
+
+            while(curr.left!= null){
+
+                curr = curr.left;
+
+            }
+
+            return curr;
+
+    
+    }
+
+    else{
+
+        return curr;
+
+    }
+
+
+        
+}
+
 
                
 
@@ -195,9 +230,8 @@ public class Tree{
         System.out.println(tree.root.right.left.data);
         System.out.println(tree.find(100));
 
-        Sub a = tree.rootvalue(25);
-
-        System.out.println(a.data);
+        Sub pred = tree.findPredecessor(35);
+        System.out.println(pred.data);
 
     }
 
