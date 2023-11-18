@@ -31,7 +31,8 @@ public class Tree{
 
     }
 
-
+    // This method add a value to the tree
+    // return nothing
     public void add(int value){
 
         Sub curr = this.root;
@@ -82,7 +83,8 @@ public class Tree{
 
     }
 
-
+    // this method identify if a certain element exist in the tree
+    // return true if the element exist, false if it does not.
     public boolean find(int value){
 
         Sub curr = this.root;
@@ -203,13 +205,61 @@ public Sub findPredecessor(int value){
 
     else{
 
-        return curr;
+        return null;
 
     }
 
 
         
 }
+
+// this method takes a value 
+// if the value exist in the tree, it is going to delete the value
+// return true if the element was deleted
+//return false it it was not found and deleted
+
+public boolean delete(int value){
+
+    Sub subroot = this.rootvalue(value);
+    Sub pred = this.findPredecessor(value);
+    if (subroot == null){
+
+        return false;
+    }
+
+    else{
+
+
+        if (pred == null){
+
+            subroot = null;
+            return true;
+
+        }
+
+        else{
+
+            int temp = pred.data;
+            subroot.data = temp;
+
+             
+            return true;
+            
+
+        }
+
+       
+    
+    }
+
+}
+
+
+
+
+
+
+
 
 
                
@@ -227,11 +277,20 @@ public Sub findPredecessor(int value){
         tree.add(25);
         tree.add(35);
 
-        System.out.println(tree.root.right.left.data);
-        System.out.println(tree.find(100));
+        //System.out.println(tree.root.right.left.data);
+       // System.out.println(tree.find(100));
 
-        Sub pred = tree.findPredecessor(35);
-        System.out.println(pred.data);
+        //Sub pred = tree.findPredecessor(35);
+        //System.out.println(pred.data);
+
+        //boolean checker=  tree.delete(22);
+        boolean checker2=  tree.delete(25);
+        tree.delete(22);
+        System.out.println(tree.find(22));
+        System.out.println(tree.root.data);
+        tree.delete(25);
+        System.out.println(tree.root.right.left.data);
+        
 
     }
 
