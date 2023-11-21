@@ -1,51 +1,95 @@
 
-//=========================Entry=======================
-class Entry{
+//=========================Entry class =======================
+/**
+ * The Entry class represents a key-value pair used in data structures such as maps.
+ * Each Entry object encapsulates an integer key and an integer value associated with that key.
+ */
+ class Entry {
+
+
+
+    /**
+     * The key of the Entry, an integer value.
+     */
     int key;
+
+    /**
+     * The value associated with the key, an integer value.
+     */
     int value;
 
-    public Entry(int key, int value){
-
+    /**
+     * Constructs an Entry object with the specified key and value.
+     *
+     * @param key   The integer key for the Entry.
+     * @param value The integer value associated with the key.
+     */
+    public Entry(int key, int value) {
         this.key = key;
         this.value = value;
-
     }
 
-    public String toString(){
-
-        return "{" +this.key+ " : "+ this.value +"}";
-
+    /**
+     * Returns a string representation of the Entry.
+     *
+     * @return A string in the format "{key : value}" representing the Entry.
+     */
+    public String toString() {
+        return "{" + this.key + " : " + this.value + "}";
     }
 }
 
 
-//=========================Hash=======================
 
-class Hash{
-
-    int primaryHash(int key, int capacity){
-
-        return key%capacity;
+//=========================Hash function class =======================
 
 
+
+/**
+ * The Hash class provides methods for performing hash functions.
+ * It includes methods for primary and secondary hashing.
+ */
+class Hash {
+
+    /**
+     * Computes the primary hash value for a given key and capacity.
+     *
+     * @param key      The integer key for which the hash value is computed.
+     * @param capacity The capacity of the hash table.
+     * @return The primary hash value for the given key and capacity.
+     */
+    int primaryHash(int key, int capacity) {
+        return key % capacity;
     }
 
-    int secondaryHash(int key){
+    /**
+     * Computes the secondary hash value for a given key.
+     * The secondary hash is used in scenarios such as open addressing in hash tables.
+     *
+     * @param key The integer key for which the secondary hash value is computed.
+     * @return The secondary hash value for the given key.
+     */
+    int secondaryHash(int key) {
 
-        return(11-(key%11));
-
+        // Using the formula 11 - (key % 11) for secondary hashing
+        return (11 - (key % 11));
     }
-
 }
+
+
 
 //===================HashTable==================
 public class HashTable{
 
+
+    // This are instance variable the hasttable class
     private Entry[]table;
     private int capacity;
     private int length;
 
 
+    // constructor
+    // takes int capacity
     public HashTable(int capacity){
 
         this.capacity = capacity;
@@ -54,7 +98,7 @@ public class HashTable{
     }
 
 
-    public getCapacity(){
+    public int getCapacity(){
         return this.capacity;
     }
 
@@ -135,6 +179,10 @@ public class HashTable{
             }
 
             return null;}
+
+
+
+        in
 
 
 
