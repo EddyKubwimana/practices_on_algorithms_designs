@@ -183,7 +183,7 @@ public class HashTable {
      * @param capacity The maximum number of entries the hash table can hold.
      */
     public HashTable(int capacity) {
-        this.capacity = capacity;
+        this.capacity = findNextPrime(capacity);
         this.table = new Entry[this.capacity];
     }
 
@@ -205,7 +205,9 @@ public class HashTable {
      */
     public void insert(int key, int value) {
         if (this.length == capacity) {
-            System.out.println("=====The table is full ====");
+            this.resize();
+            System.out.println("=====The the hastable has been resized ====");
+            this.insert(key, value);
         } else {
             int primaryIndex = new Hash().primaryHash(key, this.capacity);
             int secondaryIndex = new Hash().secondaryHash(key);
@@ -284,9 +286,78 @@ public class HashTable {
         return false;
     }
 
+
+    /**
+     * Resizes the hash table to the next prime number greater than or equal to twice the current capacity.
+     * Rehashes existing entries into the new table to maintain data integrity.
+     */
+    private void resize() {
+        int newCapacity = findNextPrime(this.capacity * 3)+1; // Double the capacity and find the next prime
+        Entry[] newTable = new Entry[newCapacity];
+
+        // Rehash existing entries into the new table
+        for (Entry entry : table) {
+            if (entry != null) {
+                int key = entry.key;
+                int value = entry.value;
+
+                int primaryIndex = new Hash().primaryHash(key, newCapacity);
+                int secondaryIndex = new Hash().secondaryHash(key);
+
+                int i = 0;
+                while (true) {
+                    int index = (primaryIndex + (i * secondaryIndex)) % newCapacity;
+
+                    if (newTable[index] == null) {
+                        newTable[index] = new Entry(key, value);
+                        break;
+                    } else {
+                        i++;
+                    }
+                }
+            }
+        }
+
+        this.capacity = newCapacity;
+        this.table = newTable;
+    }
+
+    // Other methods...
+
+    /**
+     * Finds the next prime number greater than or equal to the given number.
+     *
+     * @param n The starting point to find the next prime number.
+     * @return The next prime number greater than or equal to n.
+     */
+    private int findNextPrime(int n) {
+        while (!isPrime(n)) {
+            n++;
+        }
+        return n;
+    }
+
+    /**
+     * Checks if a given number is prime.
+     *
+     * @param num The number to check for primality.
+     * @return True if the number is prime, false otherwise.
+     */
+    private boolean isPrime(int num) {
+        if (num <= 1) {
+            return false;
+        }
+        for (int i = 2; i <= Math.sqrt(num); i++) {
+            if (num % i == 0) {
+                return false;
+            }
+        }
+        return true;
+    }
+
     public static void main(String[]args){
 
-        HashTable table = new HashTable(7);
+        HashTable table = new HashTable(1);
         table.insert(83092025,80);
         table.insert(93077,10);
         table.insert(22,90);
@@ -295,6 +366,14 @@ public class HashTable {
         table.insert(1200,690);
         table.insert(67,100);
         table.insert(100,1);
+        table.insert(8309205,80);
+        table.insert(9307,10);
+        table.insert(225,90);
+        table.insert(341870,323);
+        table.insert(23111,67);
+        table.insert(120022,690);
+        table.insert(6789,100);
+        table.insert(10001,1);
 
         System.out.println(table.search(83092025));
         System.out.println(table.search(93077));
@@ -305,6 +384,7 @@ public class HashTable {
         System.out.println(table.search(67));
         table.delete(67);
         System.out.println(table.search(67));
+        System.out.println(table.capacity);
 
 
 
