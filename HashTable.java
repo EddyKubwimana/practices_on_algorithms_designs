@@ -137,13 +137,6 @@ public class HashTable{
             return null;}
 
 
-        void delete(key){
-
-        }
-
-
-
-
 
         
 
@@ -156,13 +149,16 @@ public class HashTable{
         table.insert(3418,323);
         table.insert(23,67);
         table.insert(1200,690);
+        table.insert(67,100);
+        table.insert(100,1);
 
         System.out.println(table.retrieve(83092025));
         System.out.println(table.retrieve(93077));
         System.out.println(table.retrieve(22));
         System.out.println(table.retrieve(3418));
         System.out.println(table.retrieve(23));
-
+        System.out.println(table.retrieve(1200));
+        System.out.println(table.retrieve(67));
     }
     }
 
