@@ -277,20 +277,13 @@ public boolean delete(int value){
         tree.add(25);
         tree.add(35);
 
-        //System.out.println(tree.root.right.left.data);
-       // System.out.println(tree.find(100));
 
-        //Sub pred = tree.findPredecessor(35);
-        //System.out.println(pred.data);
+       Sub node = tree.findPredecessor(20);
 
-        //boolean checker=  tree.delete(22);
-        boolean checker2=  tree.delete(25);
-        tree.delete(22);
-        System.out.println(tree.find(22));
-        System.out.println(tree.root.data);
-        tree.delete(25);
-        System.out.println(tree.root.right.left.data);
-        
+       System.out.println(tree.right.right.data);
+
+
+
 
     }
 
