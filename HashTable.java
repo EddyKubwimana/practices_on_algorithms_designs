@@ -99,6 +99,7 @@ public class HashTable{
 
 
     public int getCapacity(){
+
         return this.capacity;
     }
 
@@ -182,11 +183,35 @@ public class HashTable{
 
 
 
-        in
-
-
-
         
+        Boolean delete(int key){
+
+
+
+            int primaryIndex = new Hash().primaryHash(key,this.capacity);
+            int secondaryIndex = new Hash().secondaryHash(key);
+
+            int i= 0;
+
+            while(i<this.capacity){
+
+                int index = (primaryIndex+(i*secondaryIndex))%this.capacity;
+
+                if( this.table[index].key==key){
+
+                    this.table[index] = null;
+                    return true;
+
+                }
+
+                i++;
+            }
+    
+
+            return false;}
+
+
+    
 
     public static void main(String[]args){
 
@@ -207,6 +232,12 @@ public class HashTable{
         System.out.println(table.retrieve(23));
         System.out.println(table.retrieve(1200));
         System.out.println(table.retrieve(67));
+
+        table.delete(67);
+        System.out.println(table.retrieve(67));
+
+
+
     }
     }
 
