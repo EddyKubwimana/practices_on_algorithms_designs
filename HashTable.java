@@ -1,5 +1,6 @@
 
 /**
+ *Lab : 5
  * Author: Eddy Kubwimana
  * Email: eddy.kubwimana@ashesi.edu.gh
  *
@@ -16,16 +17,6 @@
  * - Author: Eddy Kubwimana
  * - Email: eddy.kubwimana@ashesi.edu.gh
  * - GitHub: https://github.com/EddyKubwimana/practices_on_algorithms_designs
- *
- * The HashTable class is designed to handle collision resolution using open addressing, specifically linear probing,
- * in scenarios where there might be hash collisions. It includes methods for inserting new entries, searching for
- * entries based on keys, and deleting entries by key. The project emphasizes clean and efficient implementations of
- * various data structures to serve as educational resources or be integrated into larger software projects.
- *
- * Feel free to explore the project's GitHub repository for additional data structures and utility classes:
- * https://github.com/EddyKubwimana/practices_on_algorithms_designs
- *
- * For questions or feedback, please contact John Doe at eddy.kubwimana@ashesi.edu.gh
  */
 
 
