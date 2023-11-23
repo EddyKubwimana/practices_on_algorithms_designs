@@ -72,6 +72,64 @@ public class Avl {
     }
 
 
+    private void inorderTraversal(TreeNode root){
+
+        if (root != null){
+
+            inorderTraversal(root.left);
+            System.out.println(root.data);
+            inorderTraversal(root.right);
+
+        }
+
+    }
+
+
+    private void preorderTraversal(TreeNode root){
+
+        if (root != null){
+            System.out.println(root.data);
+            preorderTraversal(root.left);
+            preorderTraversal(root.right);
+
+        }
+    }
+
+
+    private void postorderTraversal(TreeNode root){
+
+        if(root != null){
+
+            postorderTraversal(root.left);
+            postorderTraversal(root.right);
+            System.out.println(root.data);
+
+        }
+
+    }
+
+
+    public void  inorder(){
+
+        inorderTraversal(root);
+    }
+
+    public void postorder(){
+
+        postorderTraversal(root);
+    }
+
+    public void preorder(){
+
+        preorderTraversal(root);
+
+    }
+
+
+
+     
+
+
 
 
     public static void main(String[]args){
@@ -86,7 +144,9 @@ public class Avl {
         tree.insert(150);
         tree.insert(175);
         tree.insert(130);
-        System.out.println(tree.root.right.left.data);
+
+        tree.preorder();
+       
 
 
 
