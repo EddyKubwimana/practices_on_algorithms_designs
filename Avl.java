@@ -16,13 +16,15 @@ class TreeNode{
         this.left=this.right= null;
     }
 
+    /**
+     * @param null
+     * @return  toString method
+     */
+    public String toString(){
 
+        return " Data : "+ this.data;
+    }
 
-
-
-
-
-     
 
 }
 
@@ -45,19 +47,19 @@ public class Avl {
             return new TreeNode(value);
         }
 
-        if(tree.data>value){
+        if(tree.data>=value){
 
-            root.left = recurseInsert(tree.left, value);
-
-        }
-
-        else{
-
-            root.right = recurseInsert(tree.right, value);
+            tree.left = recurseInsert(tree.left, value);
 
         }
 
-        return root;
+        else if (tree.data< value){
+
+            tree.right = recurseInsert(tree.right, value);
+
+        }
+
+        return tree;
 
 
 
@@ -73,6 +75,18 @@ public class Avl {
 
 
     public static void main(String[]args){
+
+
+        Avl tree = new Avl();
+
+        tree.insert(100);
+        tree.insert(70);
+        tree.insert(85);
+        tree.insert(50);
+        tree.insert(150);
+        tree.insert(175);
+        tree.insert(130);
+        System.out.println(tree.root.data);
 
 
 
