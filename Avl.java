@@ -86,7 +86,7 @@ public class Avl {
         tree.insert(150);
         tree.insert(175);
         tree.insert(130);
-        System.out.println(tree.root.data);
+        System.out.println(tree.root.right.left.data);
 
 
 
