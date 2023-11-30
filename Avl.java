@@ -172,6 +172,56 @@ public class Avl {
     }
 
 
+    public TreeNode parentOf(int value){
+
+       value = findNode(root, value).data;
+       return findparent(root, value);
+    }
+
+
+    private TreeNode findparent(TreeNode root, int value){
+
+        if (root == null){
+
+            return root;
+        }
+
+        else if (root.left == null){
+
+
+            return root;
+        }
+
+        else if (root.right == null){
+
+            return root;
+
+        }
+        
+        else if(root.left.data == value){
+
+            return root;
+        }
+
+        else if(root.left.data>value){
+
+            return findparent(root.left, value);
+        }
+
+        else{
+
+
+            return findparent(root.right, value);
+
+        }
+
+
+
+    
+
+    }
+
+
 
 
 
@@ -193,9 +243,13 @@ public class Avl {
         tree.insert(175);
         tree.insert(130);
 
-        tree.inorder();
+        //tree.inorder();
 
-        System.out.println(tree.isThere(70));
+        TreeNode a = tree.parentOf(175);
+
+        System.out.println(a.data);
+
+        //System.out.println(tree.isThere(70));
        
 
 
