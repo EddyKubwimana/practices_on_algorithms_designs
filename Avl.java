@@ -122,8 +122,56 @@ public class Avl {
     public void preorder(){
 
         preorderTraversal(root);
+    
+    }
+
+    private TreeNode findNode(TreeNode root,int value){
+
+        if(root==null){
+
+            return null;
+        }
+
+        else if(root.data == value){
+
+            return root;
+
+        }
+
+        else if (root.data >value){
+
+           return findNode(root.left, value);
+
+        }
+        else {
+
+           return  findNode(root.right, value);
+        }
+    
 
     }
+
+
+    public boolean isThere(int value){
+
+        TreeNode a = findNode(root, value);
+
+        if (a!= null){
+
+            System.out.println(a.data);
+
+            return true;
+        }
+
+        else{
+
+            return false;
+        }
+
+
+    }
+
+
 
 
 
@@ -145,7 +193,9 @@ public class Avl {
         tree.insert(175);
         tree.insert(130);
 
-        tree.preorder();
+        tree.inorder();
+
+        System.out.println(tree.isThere(70));
        
 
 
